@@ -1,11 +1,10 @@
-{:toc}
 # An overview of end-to-end language understanding and dialog management for personal digital assistants
 ## Abstract
  Spoken language understanding and dialog management have emerged as key technologies in interacting with personal digital assistants (PDAs). The coverage, complexity, and the scale of PDAs are much larger than previous conversational understanding systems. As such, new problems arise. ***In this paper, we provide an overview of the language understanding and dialog management capabilities of PDAs, focusing particularly on Cortana, Microsoft’s PDA.*** We explain the system architecture for language understanding and dialog management for our PDA, indicate how it differs with prior state-of-the-art systems, and describe key components. We also report a set of experiments detailing system performance  on a variety of scenarios and tasks. We describe how the quality of user experiences are measured end-to end and also discuss open issues.
 
 ## Introduction
 - `Personal digital assistant (PDA)`는 어플리케이션 또는 서비스의 인터페이스로 활용되고 있음.
-- `PDA`는 `proactive` 또는 `reactive`한 방식으로 갈림	
+	 `PDA`는 `proactive` 또는 `reactive`한 방식으로 갈림	
 	
 > With `proactive assistance`, the system takes an action based on the events it has been tracking
 
@@ -48,7 +47,7 @@
 10. support for easy upgrading of experiences
 ## System architecture
 본 논문에서 제안하는 구조는 넓게는 아래의 세 개로 나누어 볼 수 있으며, 각각의 세 개의 단계에서 여러가지 가능한 hypotheses를 추적하고, 마지막에 가장 좋은 것을 고른다.
-
+![architecture](https://raw.githubusercontent.com/aisolab/blog/master/_posts/_An%20overview%20of%20end-to-end%20language%20understanding%20and%20dialog%20management%20for%20personal%20digital%20assistants/fig1.png)
 1. input processing, including LU
 2. updating the dialog state, and
 3. applying a policy to select and execute the system action
@@ -66,7 +65,7 @@
 
 3. other layer
 	> `use flexible item selection (FIS)` to take system initiative disambiguration turns, e.g. prompting the user to select between a number of items.
-   
+  
     > make use of session storage capabilities.
 ## Language understanding
 `language understanding (LU)` component는 typed text 또는 speech transcription에 대해서 semantic analysis를 수행한다.
@@ -121,4 +120,4 @@ State 2: cuisine="chinese", place_type="restaurants", absolute_location="seattle
 ## Challenges and discussions
  In this paper, we have attempted to summarize the many dimensions and constraints that are faced when developing a large scale PDA architecture, and we have proposed a PDA architecture that attempts to address these with an eye towards expansion and component reuse. ***We demonstrate experimentally that performing late binding allows the system to correct mistakes made during the initial LU analysis through use of additional features extracted from the dialog state and experience-specific providers.*** The subjective scores obtained from end-to-end analysis show that much of the user dissatisfaction is caused by the system’s inability to service queries which had been understood correctly, rather than mistakes during the understanding or ranking components - in other words, due to engineering or other practical limitations, rather than fundamental architecture decisions.
 
- Many unsolved challenges related to language understanding and dialog management for PDAs still remain. ***On the LU side, a key issue is that of domain scaling, i.e. the ability to understand everything a user  might say. In particular, quick ramp-up of LU models for a new domain, starting with minimal or no in domain data, is of great importance to PDA developers. On the dialog management side, of great importance is the ability to develop domain-independent state tracking and policy models, which can then be reused across all new experiences.*** From an engineering perspective, heterogeneous back-ends and application interfaces remain bottlenecks for expanding to new domains, as each new back-end requires custom query building and processing of results. Addressing these issues will likely require new trade-offs on the continuum of dimensions that span the requirements for a successful PDA.![]()
+ Many unsolved challenges related to language understanding and dialog management for PDAs still remain. ***On the LU side, a key issue is that of domain scaling, i.e. the ability to understand everything a user  might say. In particular, quick ramp-up of LU models for a new domain, starting with minimal or no in domain data, is of great importance to PDA developers. On the dialog management side, of great importance is the ability to develop domain-independent state tracking and policy models, which can then be reused across all new experiences.*** From an engineering perspective, heterogeneous back-ends and application interfaces remain bottlenecks for expanding to new domains, as each new back-end requires custom query building and processing of results. Addressing these issues will likely require new trade-offs on the continuum of dimensions that span the requirements for a successful PDA.
