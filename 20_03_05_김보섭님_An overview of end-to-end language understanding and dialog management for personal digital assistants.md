@@ -1,4 +1,5 @@
 # An overview of end-to-end language understanding and dialog management for personal digital assistants
+
 ## Abstract
  Spoken language understanding and dialog management have emerged as key technologies in interacting with personal digital assistants (PDAs). The coverage, complexity, and the scale of PDAs are much larger than previous conversational understanding systems. As such, new problems arise. ***In this paper, we provide an overview of the language understanding and dialog management capabilities of PDAs, focusing particularly on Cortana, Microsoft’s PDA.*** We explain the system architecture for language understanding and dialog management for our PDA, indicate how it differs with prior state-of-the-art systems, and describe key components. We also report a set of experiments detailing system performance  on a variety of scenarios and tasks. We describe how the quality of user experiences are measured end-to end and also discuss open issues.
 
@@ -6,9 +7,9 @@
 - `Personal digital assistant (PDA)`는 어플리케이션 또는 서비스의 인터페이스로 활용되고 있음.
 	 `PDA`는 `proactive` 또는 `reactive`한 방식으로 갈림	
 	
-> With `proactive assistance`, the system takes an action based on the events it has been tracking
+	> With `proactive assistance`, the system takes an action based on the events it has been tracking
 
-> With `reactive assistance`, the system responds to the user's explicit spoken or typed request
+	> With `reactive assistance`, the system responds to the user's explicit spoken or typed request
 
 - 본 논문에서는 `inhomogenous multiple back-end service`, `open domain dialog`를 잘 수용할 수 있는 구조를 제안함.
 	
@@ -32,6 +33,7 @@
 	> *`information sharing between experiences;` options include treating each dialog as being independent with no sharing of information, long-term storage of information related to individuals, short term storage and passing of information between different experiences.*
 
 	> *`automation level` ranges from fully-automated dialogs to human-in-the-loop, the latter allowing more complex queries to be handled by a human agent. This directly impacts the trade-off between latency and accuracy - dimension 7.*
+
 4. the range of modalities and devices the PDA can interact with
 
 5. the supported range of expertises of experience authors
@@ -45,9 +47,11 @@
 9. support for development of uniform user experiences, e.g. the PDA "personality"
 
 10. support for easy upgrading of experiences
+
 ## System architecture
 본 논문에서 제안하는 구조는 넓게는 아래의 세 개로 나누어 볼 수 있으며, 각각의 세 개의 단계에서 여러가지 가능한 hypotheses를 추적하고, 마지막에 가장 좋은 것을 고른다.
 ![architecture](https://raw.githubusercontent.com/aisolab/blog/master/_posts/_An%20overview%20of%20end-to-end%20language%20understanding%20and%20dialog%20management%20for%20personal%20digital%20assistants/fig1.png)
+
 1. input processing, including LU
 2. updating the dialog state, and
 3. applying a policy to select and execute the system action
@@ -56,7 +60,7 @@
 
 1. a web search service (base layer)
 	
-> _fall-back experience for queries which cannot be processed by a more specific provider._
+	> _fall-back experience for queries which cannot be processed by a more specific provider._
 
 2. question-answering service
 	> _covering a variety of domains, that directly answer user queries without requiring them to navigat to realted web-sites._
@@ -80,28 +84,32 @@ query (e.g. typed text 또는 speech transcription)에 semantic analysis를 수�
 	  > *The slot values can be further resolved into entities. (e.g. a strongly typed object in some back-end data source) or canonicalized into a standard form (e.g. time/date values).*
 
 - `LU` modeling은 contextual manner로 이루어져야함.
-	
-> *conversational session information from the history greatly reduces the ambiguity of the current turn.*
 
-> *Contextual modeling of queries reduces the likelihood of abrupt intent or domains switching leading to more coherent interaction during a multi-turn session.*
-```
-Turn 1: "how is the weather in New York" (weather)
-Turn 2: "What about the weekend?" (weather)
-```
+  > *conversational session information from the history greatly reduces the ambiguity of the current turn.*
 
-```
-Turn 1: "how is the weather in New York" (calendar)
-Turn 2: "What about the weekend?" (calendar)
-```
+  > *Contextual modeling of queries reduces the likelihood of abrupt intent or domains switching leading to more coherent interaction during a multi-turn session.*
+
+  ```
+  Turn 1: "how is the weather in New York" (weather)
+  Turn 2: "What about the weekend?" (weather)
+  ```
+
+    ```
+  Turn 1: "how is the weather in New York" (calendar)
+  Turn 2: "What about the weekend?" (calendar)
+    ```
+
 ## Dialog
 ### Slot/Entity Carry Over (SCO) and Co-reference
 > *`SCO` decides which slots from previous turns are still relevant in the current turn of a multi-turn conversation.*
+
 ```
 Turn 1: "find french restaurants in seattle"
 State 1: cuisine="french", place_type="restaurants", absolute_location="seattle"
 Turn 2: "how about chinese"
 State 2: cuisine="chinese", place_type="restaurants", absolute_location="seattle"
 ```
+
 > *For experiences that use strongly typed entities, e.g. celebrity question-answer experiences, an alternative `co-reference resolution` model exists that learns relationships such as ‘him’ or ‘her’ from mining knowledge bases, e.g. Satori – Microsoft’s equivalent of Freebase or Google’s Knowledge Graph.*
 
 ### Flexible Item Selection
