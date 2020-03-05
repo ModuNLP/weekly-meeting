@@ -95,7 +95,7 @@ query (e.g. typed text 또는 speech transcription)에 semantic analysis를 수�
   ```
 
     ```
-  Turn 1: "how is the weather in New York" (calendar)
+  Turn 1: "how is my schedule" (calendar)
   Turn 2: "What about the weekend?" (calendar)
     ```
 
