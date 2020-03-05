@@ -19,9 +19,9 @@
 사용자가 아닌 개발자의 관점에서는 적절한 비용으로 사용자의 기대를 만족시키는 것을 목표로 한다. 아래의 사항들을 고려할 필요가 있다.  먼저 아래의 용어를 정의
 
 1. the breadth of LU domains and experiences
-  > *an `experience` as the PDA equivalent of a smart phone or desktop application.*
+	> *an `experience` as the PDA equivalent of a smart phone or desktop application.*
 
-  > *an `LU domain` as a collection of related `intents` and `slots` for which no operational conflict arises in the semantic space that they span.*
+	> *an `LU domain` as a collection of related `intents` and `slots` for which no operational conflict arises in the semantic space that they span.*
 
 2. the naturalness of user language
 
